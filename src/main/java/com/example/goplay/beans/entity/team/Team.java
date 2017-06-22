@@ -14,8 +14,18 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
 
+    private String name;
+
     @ManyToMany
     protected List<User> users;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Long getId() {
         return id;
