@@ -1,5 +1,7 @@
 package com.example.goplay.beans.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,6 +22,7 @@ public class User {
 
     private String lastname;
 
+    @JsonIgnore
     private String password;
 
     public User() {}
@@ -31,7 +34,6 @@ public class User {
         this.password = password;
         this.name = name;
     }
-
 
     public String getEmail() {
         return email;

@@ -14,16 +14,11 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
 
-    private String name;
     @ManyToMany
     protected List<User> users;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public Team(List<User> userList) {
+        this.users = userList;
     }
 
     public Long getId() {
@@ -41,4 +36,5 @@ public class Team {
     public void setUsers(List<User> users) {
         this.users = users;
     }
+
 }

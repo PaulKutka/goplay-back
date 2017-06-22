@@ -1,8 +1,5 @@
 package com.example.goplay.beans.entity;
 
-import com.example.goplay.beans.entity.match.Match;
-import org.springframework.stereotype.Service;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,7 +25,6 @@ public class TimeSlot {
         this.hour = hour;
         this.min = min;
     }
-
 
     public Long getId() {
         return id;

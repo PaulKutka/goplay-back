@@ -2,6 +2,7 @@ package com.example.goplay.controllers;
 
 import com.example.goplay.beans.entity.match.Match;
 import com.example.goplay.beans.request.MatchFinishedRequest;
+import com.example.goplay.beans.request.MatchStartRequest;
 import com.example.goplay.services.MatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ public class MatchController {
 
     @RequestMapping(value = "/start", method = RequestMethod.POST)
     public @ResponseBody
-    Match start(@RequestBody Match match) { return matchService.startMatch(match); }
+    Match start(@RequestBody MatchStartRequest matchStartRequest) { return matchService.startMatch(matchStartRequest); }
 
     @RequestMapping(value = "/finish", method = RequestMethod.POST)
     public @ResponseBody
