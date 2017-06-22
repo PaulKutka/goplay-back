@@ -50,7 +50,7 @@ public class LoginService {
         {
             return null;
         }
-        return addUser(new User(user.getName(), user.getLastname(), user.getPassword(), user.getEmail()));
+        return addUser(new User(user.getName(), user.getLastname(), encryptPassword(user.getPassword()), user.getEmail()));
     }
 
     public User addUser(User user)
