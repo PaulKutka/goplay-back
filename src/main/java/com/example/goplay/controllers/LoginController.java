@@ -24,7 +24,7 @@ public class LoginController {
             if(loginService.isUserAuthenticated(loginRequest))
             {
                 User user = loginService.getUserByEmail(loginRequest.getEmail());
-                return "Bearer " + user.getPassword();
+                return user.getToken();
         }
         return "Something wrong";
     }
@@ -35,4 +35,7 @@ public class LoginController {
         loginService.registerUser(user);
         return new LoginResponse(loginService.getUserByEmail(user.getEmail()));
     }
+
+
+
 }

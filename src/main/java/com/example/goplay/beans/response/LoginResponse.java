@@ -2,9 +2,16 @@ package com.example.goplay.beans.response;
 
 import com.example.goplay.beans.entity.User;
 
-/**
- * Created by Vilius on 2017-06-22.
- */
+import javax.crypto.spec.SecretKeySpec;
+import javax.xml.bind.DatatypeConverter;
+import java.security.Key;
+import io.jsonwebtoken.*;
+
+
+import java.time.Instant;
+import java.util.Date;
+
+
 public class LoginResponse {
 
     private Long id;
@@ -66,4 +73,6 @@ public class LoginResponse {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
 }
