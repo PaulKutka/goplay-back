@@ -28,5 +28,9 @@ public class TeamService {
         Team team = new Team(userList);
         return teamRepository.save(team);
     }
+
+    public Team setTeam(Long id) {
+        return teamRepository.save(teamRepository.findOne(id));
+    }
 }
 

@@ -55,8 +55,9 @@ public class MatchService {
         match.setStatus("finished");
 
         List<Team> teams = new ArrayList();
-        teams.add(teamRepository.findOne(matchFinishedRequest.getTeam1Id()));
-        teams.add(teamRepository.findOne(matchFinishedRequest.getTeam2Id()));
+        teams.add(teamService.setTeam(matchFinishedRequest.getTeam1Id()));
+        teams.add(teamService.setTeam(matchFinishedRequest.getTeam2Id()));
+        match.setTeams(teams);
         match.setTeam1Result(matchFinishedRequest.getTeam1Result());
         match.setTeam2Result(matchFinishedRequest.getTeam2Result());
 

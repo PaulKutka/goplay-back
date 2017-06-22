@@ -9,6 +9,17 @@ public class MatchFinishedRequest {
     private Long team1Result;
     private Long team2Result;
 
+    public MatchFinishedRequest() {
+    }
+
+    public MatchFinishedRequest(Long id, Long team1Id, Long team2Id, Long team1Result, Long team2Result) {
+        this.id = id;
+        this.team1Id = team1Id;
+        this.team2Id = team2Id;
+        this.team1Result = team1Result;
+        this.team2Result = team2Result;
+    }
+
     public Long getId() {
         return id;
     }

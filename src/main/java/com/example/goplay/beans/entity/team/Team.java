@@ -13,16 +13,25 @@ public class Team {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    protected Long id;
+    private Long id;
 
     private String name;
 
     @ManyToMany
-    protected List<User> users;
+    private List<User> users;
 
 
     @ManyToMany
     private List<Match> matches;
+
+    public Team() {
+    }
+
+    public Team(String name, List<User> users, List<Match> matches) {
+        this.name = name;
+        this.users = users;
+        this.matches = matches;
+    }
 
     public Team(List<User> userList) {
         this.users = userList;
