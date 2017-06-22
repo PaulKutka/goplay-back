@@ -68,6 +68,12 @@ public class MatchService {
         match.setTeam1Result(matchFinishedRequest.getTeam1Result());
         match.setTeam2Result(matchFinishedRequest.getTeam2Result());
 
+        if (match.getTeam1Result() > match.getTeam2Result()) {
+            match.setWinner(teamService.getTeam(match.getTeam1Result()));
+        } else {
+            match.setWinner(teamService.getTeam(match.getTeam2Result()));
+        }
+
         return new MatchResponse(matchRepository.save(match));
     }
 
