@@ -2,13 +2,10 @@ package com.example.goplay.beans.entity.match;
 
 import com.example.goplay.beans.entity.team.Team;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
-@Entity(name = "_match")
+@Entity(name = "match_")
 public class Match {
 
     @Id
@@ -19,8 +16,10 @@ public class Match {
 
     private String status;
 
+    @ManyToOne
     private Team team1;
 
+    @ManyToOne
     private Team team2;
 
     private Long team1Result;

@@ -17,6 +17,7 @@ public class Team {
 
     private String name;
 
+    @ManyToMany
     private List<Match> matches;
 
     @ManyToMany
