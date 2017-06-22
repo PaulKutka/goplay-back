@@ -7,9 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import static jdk.nashorn.internal.objects.NativeString.concat;
 
 @Entity
 public class TimeSlot {
@@ -28,8 +32,10 @@ public class TimeSlot {
 
     public TimeSlot(int hour, int min)
     {
-       Date date = new Date(0,0,0,hour,min);
-       this.time = sdfDate.format(date);
+       String timeString = hour + ":" + min;
+               this.time =  new SimpleDateFormat("HH:mm")
+                        .format(new Date())
+                        .concat(time);
     }
 
     public Long getId() {
