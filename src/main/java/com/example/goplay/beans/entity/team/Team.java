@@ -2,6 +2,7 @@ package com.example.goplay.beans.entity.team;
 
 
 import com.example.goplay.beans.entity.User;
+import com.example.goplay.beans.entity.match.Match;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,8 +15,14 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
 
+    private String name;
+
     @ManyToMany
     protected List<User> users;
+
+
+    @ManyToMany
+    private List<Match> matches;
 
     public Team(List<User> userList) {
         this.users = userList;
@@ -35,6 +42,14 @@ public class Team {
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    public List<Match> getMatches() {
+        return matches;
+    }
+
+    public void setMatches(List<Match> matches) {
+        this.matches = matches;
     }
 
 }

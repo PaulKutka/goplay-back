@@ -6,6 +6,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import com.example.goplay.beans.entity.match.Match;
+import com.example.goplay.beans.entity.team.Team;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -24,6 +32,12 @@ public class User {
 
     @JsonIgnore
     private String password;
+
+    @ManyToMany
+    private List<Team> teams;
+
+    @Transient
+    private List<Match> matches;
 
     public User() {}
 
@@ -75,4 +89,18 @@ public class User {
         this.lastname = lastname;
     }
 
+    public List<Match> getMatches() {
+        Set<Match> matches = new HashSet<>();
+
+        for (Team team : teams
+             ) {
+            matches.addAll(team.getMatches());
+        }
+
+        return new ArrayList<>(matches);
+    }
+
+    public void setMatches(List<Match> matches) {
+        this.matches = matches;
+    }
 }

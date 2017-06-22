@@ -3,10 +3,7 @@ package com.example.goplay.controllers;
 import com.example.goplay.beans.entity.User;
 import com.example.goplay.services.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -16,17 +13,17 @@ public class LoginController {
     private LoginService loginService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Object login(User user)
+    public Object login(@RequestBody User user)
     {
         if(loginService.isUserAuthenticated(user))
         {
-            return user;
+            return "Bearer " + user.getPassword();
         }
         return "Something wrong";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public Object register(User user)
+    public Object register(@RequestBody User user)
     {
         return loginService.registerUser(user);
     }

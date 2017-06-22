@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Service
 public class TimeService {
 
@@ -25,7 +26,7 @@ public class TimeService {
         while(HOUR_END > hour) {
             timeSlotList.add(new TimeSlot(hour, min));
             min += MIN_GAP;
-            if(min == 45) {
+            if(min >= 60) {
                 hour++;
                 min = 0;
             }
@@ -37,7 +38,7 @@ public class TimeService {
 
     public TimeSlot reserveTime(int min, int hour)
     {
-        TimeSlot timeSlot = timeSlotRepository.findByMinAndHourAndIsAvailableTrue(min, hour);
+        TimeSlot timeSlot = timeSlotRepository.findByTimeAndIsAvailableTrue(getTimeFromHourAndMin(hour, min));
         if(timeSlot != null)
         {
             timeSlot.setAvailable(false);
@@ -46,6 +47,10 @@ public class TimeService {
         return timeSlot;
     }
 
+    public String getTimeFromHourAndMin(int hour, int min)
+    {
+        return hour+":"+min;
+    }
 
 
     public Iterable<TimeSlot> getTimes()
