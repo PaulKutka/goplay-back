@@ -6,12 +6,12 @@ public class LoginRequest {
 
     private String email;
 
-    private String hashedPassword;
+    private String password;
 
     public LoginRequest(User user)
     {
         this.email = user.getEmail();
-        this.hashedPassword = user.getPassword();
+        this.password = user.getPassword();
     }
 
     public String getEmail() {
@@ -22,12 +22,12 @@ public class LoginRequest {
         this.email = email;
     }
 
-    public String getHashedPassword() {
-        return hashedPassword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setHashedPassword(String hashedPassword) {
-        this.hashedPassword = hashedPassword;
+    public void setPassword(String hashedPassword) {
+        this.password = hashedPassword;
     }
 }
 

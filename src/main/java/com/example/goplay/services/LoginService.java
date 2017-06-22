@@ -2,6 +2,7 @@ package com.example.goplay.services;
 
 
 import com.example.goplay.beans.entity.User;
+import com.example.goplay.beans.request.LoginRequest;
 import com.example.goplay.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,8 +40,9 @@ public class LoginService {
         return result.toString();
     }
 
-    public boolean isUserAuthenticated(User user) {
+    public boolean isUserAuthenticated(LoginRequest loginRequest) {
         {
+            User user = getUserByLoginRequest(loginRequest);
             if(encryptPassword(user.getPassword()).equals( userRepository.findUserByEmail(user.getEmail()).getPassword()))
             {
                 return true;
@@ -48,6 +50,12 @@ public class LoginService {
             return false;
         }
     }
+    public User getUserByLoginRequest(LoginRequest loginRequest)
+    {
+        User user = getUserByEmail(loginRequest.getEmail());
+        return user;
+    }
+
 
     public User registerUser(User user) {
         if(userRepository.findUserByEmail(user.getEmail()) != null)

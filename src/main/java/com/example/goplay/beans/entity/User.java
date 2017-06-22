@@ -30,7 +30,6 @@ public class User {
 
     private String lastname;
 
-    @JsonIgnore
     private String password;
 
     @ManyToMany
