@@ -20,6 +20,10 @@ public class LoginService {
         return getSha256(password);
     }
 
+    public User getUserByEmail(String email){
+        return userRepository.findUserByEmail(email);
+    }
+
     public static String getSha256(String value) {
         try{
             MessageDigest md = MessageDigest.getInstance("SHA-256");

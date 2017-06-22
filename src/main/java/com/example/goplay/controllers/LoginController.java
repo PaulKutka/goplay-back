@@ -17,7 +17,7 @@ public class LoginController {
     {
         if(loginService.isUserAuthenticated(user))
         {
-            return user;
+            return "Bearer " + user.getPassword();
         }
         return "Something wrong";
     }
