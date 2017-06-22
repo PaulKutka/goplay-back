@@ -8,9 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by paulius on 17.6.22.
- */
+
 @Service
 public class GameService {
 

@@ -21,7 +21,7 @@ public class Team {
     private List<User> users;
 
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "teams")
     private List<Match> matches;
 
     public Team() {
