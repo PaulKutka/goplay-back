@@ -5,8 +5,13 @@ import com.example.goplay.repositories.TimeSlotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+
+import static java.lang.String.format;
 
 @Service
 public class TimeService {
@@ -25,7 +30,7 @@ public class TimeService {
         while(HOUR_END > hour) {
             timeSlotList.add(new TimeSlot(hour, min));
             min += MIN_GAP;
-            if(min > 60) {
+            if(min >= 60) {
                 hour++;
                 min = 0;
             }

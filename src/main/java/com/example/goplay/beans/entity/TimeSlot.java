@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 @Entity
 public class TimeSlot {
@@ -15,9 +18,9 @@ public class TimeSlot {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private int min;
+    private SimpleDateFormat sdfDate = new SimpleDateFormat("HH:mm");
 
-    private int hour;
+    private String time;
 
     private boolean isAvailable = true;
 
@@ -25,10 +28,9 @@ public class TimeSlot {
 
     public TimeSlot(int hour, int min)
     {
-        this.hour = hour;
-        this.min = min;
+       Date date = new Date(0,0,0,hour,min);
+       this.time = sdfDate.format(date);
     }
-
 
     public Long getId() {
         return id;
@@ -38,33 +40,12 @@ public class TimeSlot {
         this.id = id;
     }
 
-    public int getMin() {
-        return min;
-    }
-
-    public void setMin(int min) {
-        this.min = min;
-    }
-
-    public int getHour() {
-        return hour;
-    }
-
-    public void setHour(int hour) {
-        this.hour = hour;
-    }
-
     public boolean isAvailable() {
         return isAvailable;
     }
 
     public void setAvailable(boolean available) {
         isAvailable = available;
-    }
-
-    @Override
-    public String toString() {
-        return hour + ":" + min;
     }
 
 }
