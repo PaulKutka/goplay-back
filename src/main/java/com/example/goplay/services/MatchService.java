@@ -55,7 +55,7 @@ public class MatchService {
         return new MatchResponse(matchRepository.save(match));
     }
 
-    public Match finishMatch(MatchFinishedRequest matchFinishedRequest){
+    public MatchResponse finishMatch(MatchFinishedRequest matchFinishedRequest){
         Match match = new Match();
         match.setId(matchFinishedRequest.getId());
         match.setStatus("finished");
@@ -67,7 +67,7 @@ public class MatchService {
         match.setTeam1Result(matchFinishedRequest.getTeam1Result());
         match.setTeam2Result(matchFinishedRequest.getTeam2Result());
 
-        return matchRepository.save(match);
+        return new MatchResponse(matchRepository.save(match));
     }
 
     public Match cancelMatch(Match match){
