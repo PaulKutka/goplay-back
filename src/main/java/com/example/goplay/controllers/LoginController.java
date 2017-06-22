@@ -1,6 +1,7 @@
 package com.example.goplay.controllers;
 
 import com.example.goplay.beans.entity.User;
+import com.example.goplay.beans.response.LoginResponse;
 import com.example.goplay.services.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,6 @@ public class LoginController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public Object register(@RequestBody User user)
     {
-        return loginService.registerUser(user);
+        return new LoginResponse(loginService.registerUser(user));
     }
 }
