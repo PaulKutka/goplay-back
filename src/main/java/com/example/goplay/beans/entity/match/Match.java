@@ -3,6 +3,7 @@ package com.example.goplay.beans.entity.match;
 import com.example.goplay.beans.entity.team.Team;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity(name = "match_")
@@ -12,15 +13,13 @@ public class Match {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-   private String name;
+    private String name;
 
     private String status;
 
-    @OneToOne
-    private Team team1;
+    @ManyToMany(mappedBy = "matches")
+    private List<Team> teams;
 
-    @OneToOne
-    private Team team2;
 
     private Long team1Result;
 
@@ -53,21 +52,6 @@ public class Match {
         this.status = status;
     }
 
-    public Team getTeam1() {
-        return team1;
-    }
-
-    public void setTeam1(Team team1) {
-        this.team1 = team1;
-    }
-
-    public Team getTeam2() {
-        return team2;
-    }
-
-    public void setTeam2(Team team2) {
-        this.team2 = team2;
-    }
 
     public Long getTeam1Result() {
         return team1Result;
@@ -83,5 +67,13 @@ public class Match {
 
     public void setTeam2Result(Long team2Result) {
         this.team2Result = team2Result;
+    }
+
+    public List<Team> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(List<Team> teams) {
+        this.teams = teams;
     }
 }

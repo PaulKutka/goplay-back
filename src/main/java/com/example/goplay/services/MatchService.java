@@ -2,6 +2,7 @@ package com.example.goplay.services;
 
 import com.example.goplay.beans.entity.User;
 import com.example.goplay.beans.entity.match.Match;
+import com.example.goplay.beans.entity.team.Team;
 import com.example.goplay.beans.request.MatchFinishedRequest;
 import com.example.goplay.beans.response.MatchResponse;
 import com.example.goplay.repositories.MatchRepository;
@@ -32,8 +33,10 @@ public class MatchService {
         Match match = new Match();
         match.setId(matchFinishedRequest.getId());
         match.setStatus("finished");
-        match.setTeam1(teamRepository.findOne(matchFinishedRequest.getTeam1Id()));
-        match.setTeam2(teamRepository.findOne(matchFinishedRequest.getTeam2Id()));
+
+        List<Team> teams = new ArrayList();
+        teams.add(teamRepository.findOne(matchFinishedRequest.getTeam1Id()));
+        teams.add(teamRepository.findOne(matchFinishedRequest.getTeam2Id()));
         match.setTeam1Result(matchFinishedRequest.getTeam1Result());
         match.setTeam2Result(matchFinishedRequest.getTeam2Result());
 
@@ -50,6 +53,10 @@ public class MatchService {
         return convertToMatchResponseList(user.getMatches());
     }
 
+    public List<MatchResponse> getOngoingMatches(){
+        return convertToMatchResponseList(matchRepository.findAllByStatus("pending"));
+    }
+
     private List<MatchResponse> convertToMatchResponseList(List<Match> matches) {
         List<MatchResponse> matchResponseList = new ArrayList<>();
 
@@ -59,4 +66,6 @@ public class MatchService {
 
         return matchResponseList;
     }
+
+
 }
