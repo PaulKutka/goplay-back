@@ -25,6 +25,17 @@ public class TeamService {
         List<User> userList = new ArrayList<>();
         userList.add(userService.getUser(player1));
         userList.add(userService.getUser(player2));
+
+        List<Team> teams = (List<Team>)teamRepository.findAll();
+
+        for (Team team: teams
+             ) {
+            if(team.getUsers().containsAll(userList)){
+                return team;
+            }
+            }
+
+
         Team team = new Team(userList);
         return teamRepository.save(team);
     }
