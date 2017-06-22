@@ -5,7 +5,7 @@ import com.example.goplay.beans.entity.team.Team;
 import javax.persistence.*;
 
 
-@Entity(name = "_match")
+@Entity(name = "match_")
 public class Match {
 
     @Id

@@ -20,6 +20,10 @@ public class LoginService {
         return getSha256(password);
     }
 
+    public User getUserByEmail(String email){
+        return userRepository.findUserByEmail(email);
+    }
+
     public static String getSha256(String value) {
         try{
             MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -34,9 +38,6 @@ public class LoginService {
         for (byte b : bytes) result.append(Integer.toString((b & 0xff) + 0x100, 16).substring(1));
         return result.toString();
     }
-
-
-
 
     public boolean isUserAuthenticated(User user) {
         {
@@ -53,7 +54,7 @@ public class LoginService {
         {
             return null;
         }
-        return addUser(new User(user.getName(), user.getLastname(), user.getPassword(), user.getEmail()));
+        return addUser(new User(user.getName(), user.getLastname(), encryptPassword(user.getPassword()), user.getEmail()));
     }
 
     public User addUser(User user)
