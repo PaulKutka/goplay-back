@@ -6,6 +6,8 @@ import com.example.goplay.services.TimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
+
 @RestController
 @CrossOrigin(origins = "*")
 public class TimeController {
@@ -15,6 +17,7 @@ public class TimeController {
     @Autowired
     private GameService gameService;
 
+    @Transactional
     @RequestMapping(value = "/times/{id}", method = RequestMethod.GET)
     public Iterable<TimeSlot> getTimes(@PathVariable Long id)
     {
