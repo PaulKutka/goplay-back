@@ -27,6 +27,8 @@ public class Match {
 
     private Long team2Result;
 
+    private Team winner;
+
     public Match() {
     }
 
@@ -77,5 +79,13 @@ public class Match {
 
     public void setTimeSlot(TimeSlot timeSlot) {
         this.timeSlot = timeSlot;
+    }
+
+    public Team getWinner() {
+        return winner;
+    }
+
+    public void setWinner(Team winner) {
+        this.winner = winner;
     }
 }
