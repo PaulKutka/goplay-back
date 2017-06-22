@@ -5,17 +5,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-/**
- * Created by paulius on 17.6.22.
- */
-@Entity
+@Entity(name = "_match")
 public class Match {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    public String matchStatus;
+    private String name;
 
     public Long getId() {
         return id;
@@ -25,15 +22,11 @@ public class Match {
         this.id = id;
     }
 
-    public String getMatchStatus() {
-        return matchStatus;
+    public String getName() {
+        return name;
     }
 
-    public void setMatchStatus(String matchStatus) {
-        this.matchStatus = matchStatus;
-    }
-
-    public Match(String matchStatus) {
-        this.matchStatus = matchStatus;
+    public void setName(String name) {
+        this.name = name;
     }
 }
