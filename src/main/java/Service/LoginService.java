@@ -18,14 +18,11 @@ public class LoginService {
     private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public String encryptPassword(String password) {
-
         return passwordEncoder.encode(password);
     }
 
-    public boolean isUserAuthenticated(User user) {
-        {
-            if(passwordEncoder.matches(user.getPassword(), userRepository.findUserByEmail(user.getEmail()).getPassword()))
-            {
+    public boolean isUserAuthenticated(User user) {{
+            if(passwordEncoder.matches(user.getPassword(), userRepository.findUserByEmail(user.getEmail()).getPassword())) {
                 return true;
             }
             return false;
@@ -33,15 +30,13 @@ public class LoginService {
     }
 
     public User registerUser(User user) {
-        if(userRepository.findUserByEmail(user.getEmail()) != null)
-        {
+        if(userRepository.findUserByEmail(user.getEmail()) != null) {
             return null;
         }
         return addUser(new User(user.getName(), user.getLastname(), user.getPassword(), user.getEmail()));
     }
 
-    public User addUser(User user)
-    {
+    public User addUser(User user) {
        return userRepository.save(user);
     }
 
