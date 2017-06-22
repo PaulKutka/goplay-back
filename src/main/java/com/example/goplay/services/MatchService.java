@@ -34,7 +34,7 @@ public class MatchService {
 
         teams.add(teamService.createTeam(matchStartRequest.getPlayer11Id(), matchStartRequest.getPlayer12Id()));
         teams.add(teamService.createTeam(matchStartRequest.getPlayer21Id(), matchStartRequest.getPlayer22Id()));
-
+        match.setTeams(teams);
         match.setStatus("pending");
         return matchRepository.save(match);
     }
