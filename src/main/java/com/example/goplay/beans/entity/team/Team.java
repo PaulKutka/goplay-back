@@ -15,6 +15,7 @@ public class Team {
     protected Long id;
 
     private String name;
+
     @ManyToMany
     protected List<User> users;
 
