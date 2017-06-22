@@ -27,6 +27,7 @@ public class Match {
 
     private Long team2Result;
 
+    @OneToOne
     private Team winner;
 
     public Match() {
