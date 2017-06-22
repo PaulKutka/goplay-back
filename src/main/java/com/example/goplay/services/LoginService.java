@@ -4,6 +4,8 @@ package com.example.goplay.services;
 import com.example.goplay.beans.entity.User;
 import com.example.goplay.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
