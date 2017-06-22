@@ -43,7 +43,7 @@ public class LoginService {
     public boolean isUserAuthenticated(LoginRequest loginRequest) {
         {
             User user = getUserByLoginRequest(loginRequest);
-            if(encryptPassword(user.getPassword()).equals( userRepository.findUserByEmail(user.getEmail()).getPassword()))
+            if(encryptPassword(loginRequest.getPassword()).equals( userRepository.findUserByEmail(user.getEmail()).getPassword()))
             {
                 return true;
             }
