@@ -12,8 +12,8 @@ public class MatchResponse extends Response {
 
     public MatchResponse(Match match) {
         id = match.getId();
-        team1Id = match.getTeam1().getId();
-        team2Id = match.getTeam2().getId();
+        team1Id = match.getTeams().get(0).getId();
+        team2Id = match.getTeams().get(1).getId();
         team1Result = match.getTeam1Result();
         team2Result = match.getTeam2Result();
     }
