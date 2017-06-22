@@ -7,5 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface TimeSlotRepository extends CrudRepository<TimeSlot, Long> {
     TimeSlot findByTimeAndIsAvailableTrue(String date);
-    void deleteAllByGame(Game game);
+    void deleteByGame(Game game);
 }

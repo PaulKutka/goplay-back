@@ -3,6 +3,7 @@ package com.example.goplay.beans.entity.game;
 import com.example.goplay.beans.entity.TimeSlot;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.List;
 
 

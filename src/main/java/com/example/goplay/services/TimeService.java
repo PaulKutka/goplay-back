@@ -32,7 +32,7 @@ public class TimeService {
                 min = 0;
             }
         }
-        timeSlotRepository.deleteAllByGame(game);
+        timeSlotRepository.deleteByGame(game);
         timeSlotRepository.save(timeSlotList);
         return timeSlotList;
     }

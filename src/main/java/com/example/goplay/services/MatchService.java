@@ -4,6 +4,7 @@ import com.example.goplay.beans.entity.TimeSlot;
 import com.example.goplay.beans.entity.User;
 import com.example.goplay.beans.entity.match.Match;
 import com.example.goplay.beans.entity.team.Team;
+import com.example.goplay.beans.request.MatchCancelRequest;
 import com.example.goplay.beans.request.MatchFinishedRequest;
 import com.example.goplay.beans.request.MatchStartRequest;
 import com.example.goplay.beans.response.MatchResponse;
@@ -67,12 +68,20 @@ public class MatchService {
         match.setTeam1Result(matchFinishedRequest.getTeam1Result());
         match.setTeam2Result(matchFinishedRequest.getTeam2Result());
 
+        if (match.getTeam1Result() > match.getTeam2Result()) {
+            match.setWinner(teamService.getTeam(matchFinishedRequest.getTeam1Id()));
+        } else {
+            match.setWinner(teamService.getTeam(matchFinishedRequest.getTeam2Id()));
+        }
+
         return new MatchResponse(matchRepository.save(match));
     }
 
-    public Match cancelMatch(Match match){
+    public MatchResponse cancelMatch(MatchCancelRequest matchCancelRequest){
+        Match match = new Match();
+        match.setId(matchCancelRequest.getId());
         match.setStatus("canceled");
-        return matchRepository.save(match);
+        return new MatchResponse(matchRepository.save(match));
     }
 
     public List<MatchResponse> getAllUserMatches(Long userId){

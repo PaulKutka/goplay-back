@@ -1,6 +1,6 @@
 package com.example.goplay.controllers;
 
-import com.example.goplay.beans.entity.match.Match;
+import com.example.goplay.beans.request.MatchCancelRequest;
 import com.example.goplay.beans.request.MatchFinishedRequest;
 import com.example.goplay.beans.request.MatchStartRequest;
 import com.example.goplay.beans.response.MatchResponse;
@@ -24,11 +24,11 @@ public class MatchController {
 
     @RequestMapping(value = "/finish", method = RequestMethod.POST)
     public @ResponseBody
-    MatchResponse finish(@RequestBody MatchFinishedRequest match) { return matchService.finishMatch(match); }
+    MatchResponse finish(@RequestBody MatchFinishedRequest matchFinishedRequest) { return matchService.finishMatch(matchFinishedRequest); }
 
     @RequestMapping(value = "/cancel", method = RequestMethod.POST)
     public @ResponseBody
-    Match cancel(@RequestBody Match match) { return matchService.cancelMatch(match); }
+    MatchResponse cancel(@RequestBody MatchCancelRequest matchCancelRequest) { return matchService.cancelMatch(matchCancelRequest); }
 
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     public @ResponseBody

@@ -3,6 +3,7 @@ package com.example.goplay.beans.entity;
 import com.example.goplay.beans.entity.game.Game;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 
 
 @Entity
