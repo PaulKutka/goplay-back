@@ -1,7 +1,7 @@
-package Controller;
+package com.example.goplay.controllers;
 
-import Entity.User;
-import Service.LoginService;
+import com.example.goplay.beans.entity.User;
+import com.example.goplay.services.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

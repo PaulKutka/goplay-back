@@ -1,6 +1,6 @@
-package Entity.request;
+package com.example.goplay.beans.request;
 
-import Entity.User;
+import com.example.goplay.beans.entity.User;
 
 public class LoginRequest {
 
