@@ -4,11 +4,11 @@ package com.example.goplay.services;
 import com.example.goplay.beans.entity.User;
 import com.example.goplay.beans.request.LoginRequest;
 import com.example.goplay.repositories.UserRepository;
+
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.spec.SecretKeySpec;
@@ -81,23 +81,29 @@ public class LoginService {
        return userRepository.save(user);
     }
 
-    private String createJWT(String id, String email, long ttlMillis) {
+    private Key getSigningKey()
+    {
+        byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(API_KEY);
+        Key signingKey = new SecretKeySpec(apiKeySecretBytes, getSignatureAlgorithm().getJcaName());
+        return signingKey;
+    }
 
-        //The JWT signature algorithm we will be using to sign the token
+    private SignatureAlgorithm getSignatureAlgorithm()
+    {
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+        return signatureAlgorithm;
+    }
+
+    private String createJWT(String id, String email, long ttlMillis) {
 
         long nowMillis = System.currentTimeMillis();
         Date now = new Date(nowMillis);
-
-        //We will sign our JWT with our ApiKey secret
-        byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(API_KEY);
-        Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
 
         //Let's set the JWT Claims
         JwtBuilder builder = Jwts.builder().setId(id)
                 .setIssuedAt(now)
                 .claim("email", email)
-                .signWith(signatureAlgorithm, signingKey);
+                .signWith(getSignatureAlgorithm(), getSigningKey());
 
         //if it has been specified, let's add the expiration
         if (ttlMillis >= 0) {
@@ -108,6 +114,12 @@ public class LoginService {
 
         //Builds the JWT and serializes it to a compact, URL-safe string
         return builder.compact();
+    }
+
+    public User getUserByToken(String token)
+    {
+        String email = Jwts.parser().setSigningKey(getSigningKey()).parseClaimsJws(token).getBody().get("email", String.class);
+        return getUserByEmail(email);
     }
 
 
