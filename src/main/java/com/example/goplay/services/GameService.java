@@ -25,5 +25,10 @@ public class GameService {
         return gamesList;
     }
 
+    public Game getGameById(Long id)
+    {
+        return gameRepository.findOne(id);
+    }
+
 
 }
