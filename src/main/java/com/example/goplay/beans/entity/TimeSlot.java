@@ -35,7 +35,7 @@ public class TimeSlot {
        String timeString = hour + ":" + min;
                this.time =  new SimpleDateFormat("HH:mm")
                         .format(new Date())
-                        .concat(time);
+                        .concat(timeString);
     }
 
     public Long getId() {
