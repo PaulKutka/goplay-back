@@ -8,10 +8,12 @@ public class LoginRequest {
 
     private String password;
 
-    public LoginRequest(User user)
+    public LoginRequest() {}
+
+    public LoginRequest(String email, String password)
     {
-        this.email = user.getEmail();
-        this.password = user.getPassword();
+        this.email = email;
+        this.password = password;
     }
 
     public String getEmail() {
@@ -26,8 +28,8 @@ public class LoginRequest {
         return password;
     }
 
-    public void setPassword(String hashedPassword) {
-        this.password = hashedPassword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
 
