@@ -24,7 +24,6 @@ public class LoginController {
             if(loginService.isUserAuthenticated(loginRequest))
             {
                 User user = loginService.getUserByEmail(loginRequest.getEmail());
-                System.out.println(loginService.getUserByToken(user.getToken()).getEmail());
                 return user.getToken();
         }
 
