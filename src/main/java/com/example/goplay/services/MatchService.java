@@ -3,6 +3,7 @@ package com.example.goplay.services;
 import com.example.goplay.beans.entity.User;
 import com.example.goplay.beans.entity.match.Match;
 import com.example.goplay.beans.request.MatchFinishedRequest;
+import com.example.goplay.beans.request.MatchStartRequest;
 import com.example.goplay.beans.response.MatchResponse;
 import com.example.goplay.repositories.MatchRepository;
 import com.example.goplay.repositories.TeamRepository;
@@ -21,9 +22,14 @@ public class MatchService {
     private UserService userService;
     @Autowired
     private TeamRepository teamRepository;
+    @Autowired
+    private TeamService teamService;
 
 
-    public Match startMatch(Match match){
+    public Match startMatch(MatchStartRequest matchStartRequest){
+        Match match = new Match();
+        match.setTeam1(teamService.createTeam(matchStartRequest.getPlayer11Id(), matchStartRequest.getPlayer12Id()));
+        match.setTeam2(teamService.createTeam(matchStartRequest.getPlayer21Id(), matchStartRequest.getPlayer22Id()));
         match.setStatus("pending");
         return matchRepository.save(match);
     }

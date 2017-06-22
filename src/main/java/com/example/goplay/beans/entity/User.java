@@ -1,5 +1,11 @@
 package com.example.goplay.beans.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import com.example.goplay.beans.entity.match.Match;
 import com.example.goplay.beans.entity.team.Team;
 
@@ -24,6 +30,7 @@ public class User {
 
     private String lastname;
 
+    @JsonIgnore
     private String password;
 
     @ManyToMany
@@ -41,7 +48,6 @@ public class User {
         this.password = password;
         this.name = name;
     }
-
 
     public String getEmail() {
         return email;
