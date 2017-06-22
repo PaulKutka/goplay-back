@@ -16,10 +16,10 @@ public class Match {
 
     private String status;
 
-    @ManyToOne
+    @OneToOne
     private Team team1;
 
-    @ManyToOne
+    @OneToOne
     private Team team2;
 
     private Long team1Result;

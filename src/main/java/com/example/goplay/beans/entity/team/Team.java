@@ -2,7 +2,6 @@ package com.example.goplay.beans.entity.team;
 
 
 import com.example.goplay.beans.entity.User;
-import com.example.goplay.beans.entity.match.Match;
 
 import javax.persistence.*;
 import java.util.List;
@@ -16,9 +15,6 @@ public class Team {
     protected Long id;
 
     private String name;
-
-    @ManyToMany
-    private List<Match> matches;
 
     @ManyToMany
     protected List<User> users;
@@ -45,13 +41,5 @@ public class Team {
 
     public void setUsers(List<User> users) {
         this.users = users;
-    }
-
-    public List<Match> getMatches() {
-        return matches;
-    }
-
-    public void setMatches(List<Match> matches) {
-        this.matches = matches;
     }
 }

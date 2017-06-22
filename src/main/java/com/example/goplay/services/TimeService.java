@@ -25,7 +25,7 @@ public class TimeService {
         while(HOUR_END > hour) {
             timeSlotList.add(new TimeSlot(hour, min));
             min += MIN_GAP;
-            if(min == 45) {
+            if(min == 60-MIN_GAP) {
                 hour++;
                 min = 0;
             }
