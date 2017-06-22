@@ -18,7 +18,6 @@ public class GameController {
     @Autowired
     private UserService userService;
 
-
     @RequestMapping(value = "/get", method = RequestMethod.GET)
     public List<User> getGame(){
         return userService.getAllUsers();
