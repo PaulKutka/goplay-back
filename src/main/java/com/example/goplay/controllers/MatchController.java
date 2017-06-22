@@ -20,7 +20,9 @@ public class MatchController {
 
     @RequestMapping(value = "/start", method = RequestMethod.POST)
     public @ResponseBody
-    Match start(@RequestBody MatchStartRequest matchStartRequest) { return matchService.startMatch(matchStartRequest); }
+    Match start(@RequestBody MatchStartRequest matchStartRequest) {
+
+        return matchService.startMatch(matchStartRequest); }
 
     @RequestMapping(value = "/finish", method = RequestMethod.POST)
     public @ResponseBody

@@ -1,5 +1,6 @@
 package com.example.goplay.beans.entity.match;
 
+import com.example.goplay.beans.entity.TimeSlot;
 import com.example.goplay.beans.entity.team.Team;
 
 import javax.persistence.*;
@@ -12,6 +13,9 @@ public class Match {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @OneToOne
+    private TimeSlot timeSlot;
 
     private String status;
 
@@ -65,5 +69,13 @@ public class Match {
 
     public void setTeams(List<Team> teams) {
         this.teams = teams;
+    }
+
+    public TimeSlot getTimeSlot() {
+        return timeSlot;
+    }
+
+    public void setTimeSlot(TimeSlot timeSlot) {
+        this.timeSlot = timeSlot;
     }
 }

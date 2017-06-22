@@ -1,5 +1,6 @@
 package com.example.goplay.services;
 
+import com.example.goplay.beans.entity.TimeSlot;
 import com.example.goplay.beans.entity.User;
 import com.example.goplay.beans.entity.match.Match;
 import com.example.goplay.beans.entity.team.Team;
@@ -8,6 +9,7 @@ import com.example.goplay.beans.request.MatchStartRequest;
 import com.example.goplay.beans.response.MatchResponse;
 import com.example.goplay.repositories.MatchRepository;
 import com.example.goplay.repositories.TeamRepository;
+import com.example.goplay.repositories.TimeSlotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,10 +27,18 @@ public class MatchService {
     private TeamRepository teamRepository;
     @Autowired
     private TeamService teamService;
+    @Autowired
+    private TimeSlotRepository timeSlotRepository;
 
 
     public Match startMatch(MatchStartRequest matchStartRequest){
+
+        TimeSlot timeSlot = timeSlotRepository.findOne(matchStartRequest.getTimeSlotId());
+        timeSlot.setAvailable(false);
+        timeSlotRepository.save(timeSlot);
+
         Match match = new Match();
+
 
         List<Team> teams = new ArrayList<>();
 
