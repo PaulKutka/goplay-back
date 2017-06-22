@@ -1,12 +1,10 @@
 package com.example.goplay.controllers;
 
 import com.example.goplay.beans.entity.TimeSlot;
+import com.example.goplay.services.GameService;
 import com.example.goplay.services.TimeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -14,11 +12,13 @@ public class TimeController {
 
     @Autowired
     private TimeService timeService;
+    @Autowired
+    private GameService gameService;
 
-    @RequestMapping(value = "/times", method = RequestMethod.GET)
-    public Iterable<TimeSlot> getTimes()
+    @RequestMapping(value = "/times/{id}", method = RequestMethod.GET)
+    public Iterable<TimeSlot> getTimes(@PathVariable Long id)
     {
-        timeService.resetTimes();
+        timeService.resetTimesForGame(gameService.getGameById(id));
         return timeService.getTimes();
     }
 
