@@ -3,11 +3,13 @@ package com.example.goplay.controllers;
 import com.example.goplay.beans.entity.User;
 import com.example.goplay.services.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class LoginController {
 
     @Autowired

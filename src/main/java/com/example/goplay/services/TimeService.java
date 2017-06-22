@@ -35,6 +35,18 @@ public class TimeService {
         return timeSlotList;
     }
 
+    public TimeSlot reserveTime(int min, int hour)
+    {
+        TimeSlot timeSlot = timeSlotRepository.findByMinAndHourAndIsAvailableTrue(min, hour);
+        if(timeSlot != null)
+        {
+            timeSlot.setAvailable(false);
+            return timeSlotRepository.save(timeSlot);
+        }
+        return timeSlot;
+    }
+
+
 
     public Iterable<TimeSlot> getTimes()
     {
