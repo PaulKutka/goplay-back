@@ -21,7 +21,15 @@ public class TimeSlot {
 
     public TimeSlot(int hour, int min)
     {
-       this.time = hour + ":" + min;
+       if(min == 0)
+       {
+           this.time = hour + ":" + min + "0";
+       }
+       else
+       {
+           this.time = hour + ":" + min;
+       }
+
     }
 
     public Long getId() {
