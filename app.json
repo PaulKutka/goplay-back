@@ -1,0 +1,18 @@
+{
+  "name": "goplay-back",
+  "description": "",
+  "scripts": {
+  },
+  "env": {
+    "HIBERNATE_BEHAVIOR": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/gradle"
+    }
+  ]
+}
