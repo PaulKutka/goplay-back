@@ -21,8 +21,11 @@ public class Team {
     protected List<User> users;
 
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "teams")
     private List<Match> matches;
+
+    public Team() {
+    }
 
     public Team(List<User> userList) {
         this.users = userList;

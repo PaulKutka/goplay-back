@@ -15,7 +15,7 @@ public class Match {
 
     private String status;
 
-    @ManyToMany(mappedBy = "matches")
+    @ManyToMany
     private List<Team> teams;
 
 

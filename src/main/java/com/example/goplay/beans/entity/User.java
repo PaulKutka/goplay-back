@@ -1,13 +1,8 @@
 package com.example.goplay.beans.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import com.example.goplay.beans.entity.match.Match;
 import com.example.goplay.beans.entity.team.Team;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -33,7 +28,7 @@ public class User {
     @JsonIgnore
     private String password;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "users")
     private List<Team> teams;
 
     @Transient
@@ -102,5 +97,13 @@ public class User {
 
     public void setMatches(List<Match> matches) {
         this.matches = matches;
+    }
+
+    public List<Team> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(List<Team> teams) {
+        this.teams = teams;
     }
 }

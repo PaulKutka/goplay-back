@@ -27,16 +27,22 @@ public class MatchService {
     private TeamService teamService;
 
 
-    public Match startMatch(MatchStartRequest matchStartRequest){
+    public MatchResponse startMatch(MatchStartRequest matchStartRequest){
         Match match = new Match();
 
         List<Team> teams = new ArrayList<>();
 
-        teams.add(teamService.createTeam(matchStartRequest.getPlayer11Id(), matchStartRequest.getPlayer12Id()));
-        teams.add(teamService.createTeam(matchStartRequest.getPlayer21Id(), matchStartRequest.getPlayer22Id()));
+        Team team1 = teamService.createTeam(matchStartRequest.getPlayer11Id(), matchStartRequest.getPlayer12Id());
+        Team team2 = teamService.createTeam(matchStartRequest.getPlayer21Id(), matchStartRequest.getPlayer22Id());
+
+        teams.add(team1);
+        teams.add(team2);
+
         match.setTeams(teams);
         match.setStatus("pending");
-        return matchRepository.save(match);
+
+
+        return new MatchResponse(matchRepository.save(match));
     }
 
     public Match finishMatch(MatchFinishedRequest matchFinishedRequest){
