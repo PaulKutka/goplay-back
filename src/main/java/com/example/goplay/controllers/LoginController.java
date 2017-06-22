@@ -16,9 +16,9 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Object login(@RequestBody User user)
     {
-        if(loginService.isUserAuthenticated(user))
-        {
-            return "Bearer " + user.getPassword();
+            if(loginService.isUserAuthenticated(user))
+            {
+                return "Bearer " + user.getPassword();
         }
         return "Something wrong";
     }
