@@ -1,9 +1,9 @@
 package com.example.goplay.beans.entity.game;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.example.goplay.beans.entity.TimeSlot;
+
+import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -16,6 +16,9 @@ public class  Game {
     private String title;
 
     private String description;
+
+    @OneToMany
+    private List<TimeSlot> timeSlots;
 
     public Long getId() {
         return id;
@@ -40,4 +43,5 @@ public class  Game {
     public void setDescription(String description) {
         this.description = description;
     }
+
 }

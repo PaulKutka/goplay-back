@@ -1,9 +1,8 @@
 package com.example.goplay.beans.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.example.goplay.beans.entity.game.Game;
+
+import javax.persistence.*;
 
 
 @Entity
@@ -13,14 +12,18 @@ public class TimeSlot {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @ManyToOne
+    private Game game;
+
     private String time;
 
     private boolean isAvailable = true;
 
     public TimeSlot() {}
 
-    public TimeSlot(int hour, int min)
+    public TimeSlot(int hour, int min, Game game)
     {
+        this.game = game;
        if(min == 0)
        {
            this.time = hour + ":" + min + "0";
@@ -54,5 +57,13 @@ public class TimeSlot {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 }

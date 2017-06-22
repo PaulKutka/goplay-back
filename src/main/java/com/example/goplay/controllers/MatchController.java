@@ -24,7 +24,7 @@ public class MatchController {
 
     @RequestMapping(value = "/finish", method = RequestMethod.POST)
     public @ResponseBody
-    Match finish(@RequestBody MatchFinishedRequest match) { return matchService.finishMatch(match); }
+    MatchResponse finish(@RequestBody MatchFinishedRequest match) { return matchService.finishMatch(match); }
 
     @RequestMapping(value = "/cancel", method = RequestMethod.POST)
     public @ResponseBody
