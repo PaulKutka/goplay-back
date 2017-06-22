@@ -110,10 +110,5 @@ public class LoginService {
         return builder.compact();
     }
 
-    public User getUserByToken(String token)
-    {
-        token.c
-        return getUserByEmail()
-    }
 
 }
