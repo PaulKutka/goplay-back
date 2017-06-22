@@ -35,9 +35,6 @@ public class LoginService {
         return result.toString();
     }
 
-
-
-
     public boolean isUserAuthenticated(User user) {
         {
             if(user.getPassword().equals( userRepository.findUserByEmail(user.getEmail()).getPassword()))

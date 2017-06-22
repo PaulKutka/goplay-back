@@ -25,7 +25,7 @@ public class TimeService {
         while(HOUR_END > hour) {
             timeSlotList.add(new TimeSlot(hour, min));
             min += MIN_GAP;
-            if(min == 60-MIN_GAP) {
+            if(min > 60) {
                 hour++;
                 min = 0;
             }
@@ -45,8 +45,6 @@ public class TimeService {
         }
         return timeSlot;
     }
-
-
 
     public Iterable<TimeSlot> getTimes()
     {
