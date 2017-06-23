@@ -9,7 +9,6 @@ import com.example.goplay.beans.request.MatchFinishedRequest;
 import com.example.goplay.beans.request.MatchStartRequest;
 import com.example.goplay.beans.response.MatchResponse;
 import com.example.goplay.repositories.MatchRepository;
-import com.example.goplay.repositories.TeamRepository;
 import com.example.goplay.repositories.TimeSlotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,15 +24,13 @@ public class MatchService {
     @Autowired
     private UserService userService;
     @Autowired
-    private TeamRepository teamRepository;
-    @Autowired
     private TeamService teamService;
     @Autowired
     private TimeSlotRepository timeSlotRepository;
     @Autowired
     private NotificationService notificationService;
 
-    public MatchResponse startMatch(MatchStartRequest matchStartRequest){
+    public MatchResponse startMatch(MatchStartRequest matchStartRequest, Long senderId){
 
         TimeSlot timeSlot = timeSlotRepository.findOne(matchStartRequest.getTimeSlotId());
         timeSlot.setAvailable(false);
@@ -43,7 +40,7 @@ public class MatchService {
 
         List<Team> teams = new ArrayList<>();
 
-        Team team1 = teamService.createTeam(matchStartRequest.getPlayer11Id(), matchStartRequest.getPlayer12Id());
+        Team team1 = teamService.createTeam(senderId, matchStartRequest.getPlayer12Id());
         Team team2 = teamService.createTeam(matchStartRequest.getPlayer21Id(), matchStartRequest.getPlayer22Id());
 
         teams.add(team1);
@@ -51,7 +48,6 @@ public class MatchService {
 
         match.setTeams(teams);
         match.setStatus("pending");
-
 
         return new MatchResponse(matchRepository.save(match));
     }
