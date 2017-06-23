@@ -52,9 +52,9 @@ public class NotificationController {
         return "done";
     }
 
-    @RequestMapping(value = "/status/{id}", method = RequestMethod.GET)
-    Iterable<ColleagueResponse> getStatus(@PathVariable(value = "requestId") Long requestId)
+    @RequestMapping(value = "/status/{requestId}", method = RequestMethod.GET)
+    Iterable<ColleagueResponse> getStatus(@PathVariable(value = "requestId") Integer requestId)
     {
-       return notificationService.parseUsersToColleagueResponse(notificationService.getRequestById(requestId).getAccepters());
+       return notificationService.parseUsersToColleagueResponse(notificationService.getRequestById(Long.valueOf(requestId)).getAccepters());
     }
 }

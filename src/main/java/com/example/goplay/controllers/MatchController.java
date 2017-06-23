@@ -40,7 +40,6 @@ public class MatchController {
     public @ResponseBody
     List<MatchResponse> cancel(@PathVariable("id") Long id) { return matchService.getAllUserMatches(id); }
 
-
     @RequestMapping(value = "/ongoing", method = RequestMethod.GET)
     public @ResponseBody
     List<MatchResponse> getOngoing() { return matchService.getOngoingMatches(); }

@@ -2,9 +2,7 @@ package com.example.goplay.beans.request;
 
 import javax.persistence.OneToOne;
 
-/**
- * Created by Mantas on 2017.06.22.
- */
+
 public class MatchStartRequest {
 
     private Long timeSlotId;

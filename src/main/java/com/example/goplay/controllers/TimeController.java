@@ -21,7 +21,6 @@ public class TimeController {
     @RequestMapping(value = "/times/{id}", method = RequestMethod.GET)
     public Iterable<TimeSlot> getTimes(@PathVariable Long id)
     {
-        timeService.resetTimesForGame(gameService.getGameById(id));
         return timeService.getTimesByGameId(gameService.getGameById(id));
     }
 
