@@ -28,10 +28,10 @@ public class NotificationService {
     @Autowired
     private UserRepository userRepository;
 
-    public Request createRequest(MatchStartRequest matchStartRequest)
+    public Request createRequest(MatchStartRequest matchStartRequest, User sender)
     {
         Request request = new Request();
-        request.setId(matchStartRequest.getPlayer11Id());
+        request.setId(sender.getId());
         List<RequestNotification> requestNotifications = new ArrayList<>();
         List<User> receivers = getReceivers(matchStartRequest);
         for (User user: receivers

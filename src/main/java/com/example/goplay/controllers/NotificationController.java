@@ -5,7 +5,6 @@ import com.example.goplay.beans.entity.request.RequestNotification;
 import com.example.goplay.beans.request.AnswerRequest;
 import com.example.goplay.beans.request.MatchStartRequest;
 import com.example.goplay.beans.response.ColleagueResponse;
-import com.example.goplay.beans.response.UserResponse;
 import com.example.goplay.services.LoginService;
 import com.example.goplay.services.NotificationService;
 import com.example.goplay.services.UserService;
@@ -28,7 +27,8 @@ public class NotificationController {
     Long sendNotifications(@RequestHeader(value = "Authorization", required = false) String token,
                              @RequestBody MatchStartRequest matchStartRequest)
     {
-        notificationService.createRequest(matchStartRequest);
+        User sender = loginService.getUserByToken(token);
+        notificationService.createRequest(matchStartRequest, sender);
         return loginService.getUserByToken(token).getId();
     }
 
