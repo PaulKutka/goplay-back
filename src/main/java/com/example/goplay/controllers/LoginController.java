@@ -19,7 +19,7 @@ public class LoginController {
 
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Object login(@RequestBody LoginRequest loginRequest)
+    public String login(@RequestBody LoginRequest loginRequest)
     {
             if(loginService.isUserAuthenticated(loginRequest))
             {
