@@ -38,15 +38,11 @@ public class LeadboardService {
         leadboardResponseList.sort(new Comparator<LeadboardResponse>() {
             @Override
             public int compare(LeadboardResponse leadboardResponse, LeadboardResponse t1) {
-                if (leadboardResponse.getWins() > leadboardResponse.getLoses()){
-                    return 1;
-                } else if (leadboardResponse.getWins() == leadboardResponse.getLoses()){
-                    if(leadboardResponse.getLoses() < t1.getLoses()){
-                        return 1;
-                    }
+                if (leadboardResponse.getWins() >= t1.getWins()){
+                    return -1;
                 }
-
-                return -1;
+                else
+                    return 1;
             }
         });
 
@@ -68,16 +64,16 @@ public class LeadboardService {
     }
 
     public int getLoses(User user) {
-        int wins = 0;
+        int loses = 0;
 
         List<Match> userMatches = user.getMatches();
 
         for (Match match : userMatches) {
             if(!match.getWinner().getUsers().contains(user)){
-                wins--;
+                loses++;
             }
         }
 
-        return wins;
+        return loses;
     }
 }
