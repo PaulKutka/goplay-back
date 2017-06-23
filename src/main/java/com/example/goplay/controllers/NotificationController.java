@@ -53,7 +53,7 @@ public class NotificationController {
     }
 
     @RequestMapping(value = "/status/{id}", method = RequestMethod.GET)
-    Iterable<ColleagueResponse> getStatus(@PathVariable Long requestId)
+    Iterable<ColleagueResponse> getStatus(@PathVariable(value = "requestId") Long requestId)
     {
        return notificationService.parseUsersToColleagueResponse(notificationService.getRequestById(requestId).getAccepters());
     }
