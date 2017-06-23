@@ -35,7 +35,6 @@ public class MatchService {
 
     public MatchResponse startMatch(MatchStartRequest matchStartRequest, Long senderId){
 
-        notificationService.createRequest(matchStartRequest);
         TimeSlot timeSlot = timeSlotRepository.findOne(matchStartRequest.getTimeSlotId());
         timeSlot.setAvailable(false);
         timeSlotRepository.save(timeSlot);

@@ -31,16 +31,15 @@ public class NotificationService {
     public Request createRequest(MatchStartRequest matchStartRequest)
     {
         Request request = new Request();
+        request.setId(matchStartRequest.getPlayer11Id());
         List<RequestNotification> requestNotifications = new ArrayList<>();
         List<User> receivers = getReceivers(matchStartRequest);
         for (User user: receivers
              ) {
             requestNotifications.add(new RequestNotification(user, request));
         }
-
-        request.setAccepters(receivers);
-        requestRepository.save(request);
         requestNotificationRepository.save(requestNotifications);
+        requestRepository.save(request);
 
         return request;
     }
@@ -57,6 +56,7 @@ public class NotificationService {
     public void approveRequest(AnswerRequest answerRequest,User sender) {
         Request request = requestRepository.findOne(answerRequest.getRequestId());
         request.addAcceptor(sender);
+        requestRepository.save(request);
     }
 
     public void disapproveRequest(AnswerRequest answerRequest, User sender) {

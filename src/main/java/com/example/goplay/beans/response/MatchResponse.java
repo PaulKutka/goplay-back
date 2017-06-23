@@ -10,6 +10,17 @@ public class MatchResponse extends Response {
     private Long team1Result;
     private Long team2Result;
 
+    private Long requestId;
+
+    public MatchResponse(Match match,Long requestId) {
+        id = match.getId();
+        team1Id = match.getTeams().get(0).getId();
+        team2Id = match.getTeams().get(1).getId();
+        team1Result = match.getTeam1Result();
+        team2Result = match.getTeam2Result();
+        this.requestId = requestId;
+    }
+
     public MatchResponse(Match match) {
         id = match.getId();
         team1Id = match.getTeams().get(0).getId();
@@ -56,5 +67,13 @@ public class MatchResponse extends Response {
 
     public void setTeam2Result(Long team2Result) {
         this.team2Result = team2Result;
+    }
+
+    public Long getRequestId() {
+        return requestId;
+    }
+
+    public void setRequestId(Long requestId) {
+        this.requestId = requestId;
     }
 }

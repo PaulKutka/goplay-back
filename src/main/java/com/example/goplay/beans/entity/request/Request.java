@@ -2,6 +2,8 @@ package com.example.goplay.beans.entity.request;
 
 
 import com.example.goplay.beans.entity.User;
+import com.sun.org.apache.regexp.internal.RE;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -20,7 +22,7 @@ public class Request {
 
     private int isApproved = 0;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<User> accepters;
 
     public Request() {
