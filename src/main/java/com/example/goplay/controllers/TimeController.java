@@ -22,7 +22,7 @@ public class TimeController {
     public Iterable<TimeSlot> getTimes(@PathVariable Long id)
     {
         timeService.resetTimesForGame(gameService.getGameById(id));
-        return timeService.getTimes();
+        return timeService.getTimesByGameId(gameService.getGameById(id));
     }
 
 }

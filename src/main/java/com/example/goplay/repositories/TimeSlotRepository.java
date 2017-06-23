@@ -6,6 +6,6 @@ import com.example.goplay.beans.entity.game.Game;
 import org.springframework.data.repository.CrudRepository;
 
 public interface TimeSlotRepository extends CrudRepository<TimeSlot, Long> {
-    TimeSlot findByTimeAndIsAvailableTrue(String date);
+    Iterable<TimeSlot> findByGameAndIsAvailableTrue(Game game);
     void deleteByGame(Game game);
 }

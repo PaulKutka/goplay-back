@@ -37,16 +37,6 @@ public class TimeService {
         return timeSlotList;
     }
 
-    public TimeSlot reserveTime(int min, int hour)
-    {
-        TimeSlot timeSlot = timeSlotRepository.findByTimeAndIsAvailableTrue(getTimeFromHourAndMin(hour, min));
-        if(timeSlot != null)
-        {
-            timeSlot.setAvailable(false);
-            return timeSlotRepository.save(timeSlot);
-        }
-        return timeSlot;
-    }
 
     public String getTimeFromHourAndMin(int hour, int min)
     {
@@ -59,4 +49,7 @@ public class TimeService {
         return timeSlotRepository.findAll();
     }
 
+    public Iterable<TimeSlot> getTimesByGameId(Game game) {
+        return timeSlotRepository.findByGameAndIsAvailableTrue(game);
+    }
 }
