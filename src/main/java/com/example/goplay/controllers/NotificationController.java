@@ -24,7 +24,7 @@ public class NotificationController {
     private UserService userService;
 
     @RequestMapping(value = "/send", method = RequestMethod.POST)
-    Long sendNotifications(@RequestHeader("Authorization") String token,
+    Long sendNotifications(@RequestHeader(value = "Authorization") String token,
                              @RequestBody MatchStartRequest matchStartRequest)
     {
         notificationService.createRequest(matchStartRequest);
@@ -32,13 +32,13 @@ public class NotificationController {
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    Iterable<RequestNotification> getNotifications(@RequestHeader("Authorization") String token)
+    Iterable<RequestNotification> getNotifications(@RequestHeader(value = "Authorization") String token)
     {
         return notificationService.getNotificationsByUser(loginService.getUserByToken(token));
     }
 
     @RequestMapping(value = "/post", method = RequestMethod.POST)
-    String post(@RequestBody AnswerRequest answerRequest, @RequestHeader("Authorization") String token)
+    String post(@RequestBody AnswerRequest answerRequest, @RequestHeader(value = "Authorization") String token)
     {
         User sender = loginService.getUserByToken(token);
         switch (answerRequest.getStatus())
