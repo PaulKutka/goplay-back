@@ -10,6 +10,7 @@ import com.example.goplay.beans.request.MatchStartRequest;
 import com.example.goplay.beans.response.MatchResponse;
 import com.example.goplay.repositories.MatchRepository;
 import com.example.goplay.repositories.TimeSlotRepository;
+import com.example.goplay.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,8 @@ public class MatchService {
     private MatchRepository matchRepository;
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserRepository userRepository;
     @Autowired
     private TeamService teamService;
     @Autowired
@@ -40,8 +43,10 @@ public class MatchService {
 
         List<Team> teams = new ArrayList<>();
 
-        Team team1 = teamService.createTeam(senderId, matchStartRequest.getPlayer12Id());
-        Team team2 = teamService.createTeam(matchStartRequest.getPlayer21Id(), matchStartRequest.getPlayer22Id());
+        Team team1 = teamService.createTeam(userRepository.findUserById(senderId)
+                , userRepository.findUserByName(matchStartRequest.getPlayer12Name()));
+        Team team2 = teamService.createTeam(userRepository.findUserByName(matchStartRequest.getPlayer21Name())
+                , userRepository.findUserByName(matchStartRequest.getPlayer22Name()));
 
         teams.add(team1);
         teams.add(team2);

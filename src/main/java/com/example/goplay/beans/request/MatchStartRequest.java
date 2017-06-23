@@ -1,8 +1,5 @@
 package com.example.goplay.beans.request;
 
-import com.example.goplay.beans.entity.TimeSlot;
-
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -12,52 +9,42 @@ public class MatchStartRequest {
 
     private Long timeSlotId;
 
-    private Long player11Id;
-    private Long player12Id;
-    private Long player21Id;
-    private Long player22Id;
+    private String player12Name;
+    private String player21Name;
+    private String player22Name;
+
+    public MatchStartRequest(Long timeSlotId, String player12Name, String player21Name, String player22Name) {
+        this.timeSlotId = timeSlotId;
+        this.player12Name = player12Name;
+        this.player21Name = player21Name;
+        this.player22Name = player22Name;
+    }
 
     public MatchStartRequest() {
     }
 
-    public MatchStartRequest(Long player11, Long player12, Long player21, Long player22, Long timeSlotId) {
-        this.player11Id = player11;
-        this.player12Id = player12;
-        this.player21Id = player21;
-        this.player22Id = player22;
-        this.timeSlotId = timeSlotId;
+    public String getPlayer12Name() {
+        return player12Name;
     }
 
-    public void setPlayer11Id(Long player11Id) {
-        this.player11Id = player11Id;
+    public void setPlayer12Name(String player12Name) {
+        this.player12Name = player12Name;
     }
 
-    public void setPlayer12Id(Long player12Id) {
-        this.player12Id = player12Id;
+    public String getPlayer21Name() {
+        return player21Name;
     }
 
-    public void setPlayer21Id(Long player21Id) {
-        this.player21Id = player21Id;
+    public void setPlayer21Name(String player21Name) {
+        this.player21Name = player21Name;
     }
 
-    public void setPlayer22Id(Long player22Id) {
-        this.player22Id = player22Id;
+    public String getPlayer22Name() {
+        return player22Name;
     }
 
-    public Long getPlayer11Id() {
-        return player11Id;
-    }
-
-    public Long getPlayer12Id() {
-        return player12Id;
-    }
-
-    public Long getPlayer21Id() {
-        return player21Id;
-    }
-
-    public Long getPlayer22Id() {
-        return player22Id;
+    public void setPlayer22Name(String player22Name) {
+        this.player22Name = player22Name;
     }
 
     public Long getTimeSlotId () {
