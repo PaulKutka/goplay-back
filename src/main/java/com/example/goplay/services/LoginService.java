@@ -77,7 +77,7 @@ public class LoginService {
 
     public User addUser(User user)
     {
-        user.setToken(createJWT(String.valueOf(user.getId()), user.getEmail(),  3600000));
+        user.setToken(createJWT(String.valueOf(user.getId()), user.getEmail(),  360000000));
        return userRepository.save(user);
     }
 

@@ -29,17 +29,14 @@ public class NotificationService {
     {
         Request request = new Request();
         request.setId(matchStartRequest.getPlayer11Id());
-        request.setId(matchStartRequest.getPlayer11Id());
         List<RequestNotification> requestNotifications = new ArrayList<>();
         List<User> receivers = getReceivers(matchStartRequest);
         for (User user: receivers
              ) {
             requestNotifications.add(new RequestNotification(user, request));
         }
-
-        request.setAccepters(receivers);
-        requestRepository.save(request);
         requestNotificationRepository.save(requestNotifications);
+        requestRepository.save(request);
 
         return request;
     }

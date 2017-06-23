@@ -11,7 +11,7 @@ public class RequestNotification {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Request request;
 
     @OneToOne

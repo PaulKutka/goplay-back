@@ -10,7 +10,6 @@ import javax.persistence.OneToOne;
  */
 public class MatchStartRequest {
 
-    @OneToOne
     private Long timeSlotId;
 
     private Long player11Id;
