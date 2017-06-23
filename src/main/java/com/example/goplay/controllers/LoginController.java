@@ -3,6 +3,7 @@ package com.example.goplay.controllers;
 import com.example.goplay.beans.entity.User;
 import com.example.goplay.beans.request.LoginRequest;
 import com.example.goplay.beans.response.LoginResponse;
+import com.example.goplay.beans.response.TokenResponse;
 import com.example.goplay.services.LoginService;
 import com.example.goplay.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,19 +20,18 @@ public class LoginController {
 
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@RequestBody LoginRequest loginRequest)
+    public TokenResponse login(@RequestBody LoginRequest loginRequest)
     {
             if(loginService.isUserAuthenticated(loginRequest))
             {
                 User user = loginService.getUserByEmail(loginRequest.getEmail());
-                return user.getToken();
+                return new TokenResponse(user.getToken());
         }
-
-        return "Something wrong";
+        return null;
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public Object register(@RequestBody User user)
+    public LoginResponse register(@RequestBody User user)
     {
         loginService.registerUser(user);
         return new LoginResponse(loginService.getUserByEmail(user.getEmail()));

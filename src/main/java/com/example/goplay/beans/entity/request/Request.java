@@ -22,7 +22,7 @@ public class Request {
 
     private int isApproved = 0;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
     private List<User> accepters;
 
     public Request() {
@@ -76,6 +76,7 @@ public class Request {
     public int getApproves() {
         return approves;
     }
+
 
     public void setApproves(int approves) {
         this.approves = approves;
