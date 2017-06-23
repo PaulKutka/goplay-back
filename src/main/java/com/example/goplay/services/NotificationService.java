@@ -8,6 +8,7 @@ import com.example.goplay.beans.request.MatchStartRequest;
 import com.example.goplay.beans.response.ColleagueResponse;
 import com.example.goplay.repositories.RequestNotificationRepository;
 import com.example.goplay.repositories.RequestRepository;
+import com.example.goplay.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,8 @@ public class NotificationService {
     private RequestRepository requestRepository;
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserRepository userRepository;
 
     public Request createRequest(MatchStartRequest matchStartRequest)
     {
@@ -76,9 +79,9 @@ public class NotificationService {
 
     public List<User> getReceivers(MatchStartRequest matchStartRequest) {
         List<User> list = new ArrayList<>();
-        list.add(userService.getUser(matchStartRequest.getPlayer12Id()));
-        list.add(userService.getUser(matchStartRequest.getPlayer21Id()));
-        list.add(userService.getUser(matchStartRequest.getPlayer22Id()));
+        list.add(userRepository.findUserByName(matchStartRequest.getPlayer12Name()));
+        list.add(userRepository.findUserByName(matchStartRequest.getPlayer21Name()));
+        list.add(userRepository.findUserByName(matchStartRequest.getPlayer22Name()));
         return list;
     }
 }

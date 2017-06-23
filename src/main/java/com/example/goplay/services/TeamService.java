@@ -21,10 +21,10 @@ public class TeamService {
     @Autowired
     private UserService userService;
 
-    public Team createTeam(Long player1, Long player2) {
+    public Team createTeam(User player1, User player2) {
         List<User> userList = new ArrayList<>();
-        userList.add(userService.getUser(player1));
-        userList.add(userService.getUser(player2));
+        userList.add(player1);
+        userList.add(player2);
 
         List<Team> teams = (List<Team>)teamRepository.findAll();
 
