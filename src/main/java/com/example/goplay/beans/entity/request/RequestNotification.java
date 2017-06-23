@@ -39,4 +39,12 @@ public class RequestNotification {
     public void setReceiver(User receiver) {
         this.receiver = receiver;
     }
+
+    public Request getRequest() {
+        return request;
+    }
+
+    public void setRequest(Request request) {
+        this.request = request;
+    }
 }
