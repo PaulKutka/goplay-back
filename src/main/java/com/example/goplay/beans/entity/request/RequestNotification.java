@@ -5,7 +5,7 @@ import com.example.goplay.beans.entity.User;
 import javax.persistence.*;
 
 @Entity
-public class NotificaionRequest {
+public class RequestNotification {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,7 +17,12 @@ public class NotificaionRequest {
     @OneToOne
     User receiver;
 
-    NotificaionRequest() {}
+    public RequestNotification() {}
+
+    public RequestNotification(User receiver, Request request) {
+        this.receiver = receiver;
+        this.request = request;
+    }
 
     public Long getId() {
         return id;

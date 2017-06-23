@@ -29,10 +29,13 @@ public class MatchService {
     private TeamService teamService;
     @Autowired
     private TimeSlotRepository timeSlotRepository;
+    @Autowired
+    private NotificationService notificationService;
 
 
     public MatchResponse startMatch(MatchStartRequest matchStartRequest){
 
+        notificationService.createRequest(matchStartRequest);
         TimeSlot timeSlot = timeSlotRepository.findOne(matchStartRequest.getTimeSlotId());
         timeSlot.setAvailable(false);
         timeSlotRepository.save(timeSlot);
