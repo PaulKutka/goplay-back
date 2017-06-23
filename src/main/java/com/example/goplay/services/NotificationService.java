@@ -53,6 +53,7 @@ public class NotificationService {
     public void approveRequest(AnswerRequest answerRequest,User sender) {
         Request request = requestRepository.findOne(answerRequest.getRequestId());
         request.addAcceptor(sender);
+        requestRepository.save(request);
     }
 
     public void disapproveRequest(AnswerRequest answerRequest, User sender) {
