@@ -24,7 +24,7 @@ public class MatchController {
 
     @RequestMapping(value = "/start", method = RequestMethod.POST)
     public @ResponseBody
-    MatchResponse start(@RequestBody MatchStartRequest matchStartRequest, @RequestHeader("Authorization") String token)
+    MatchResponse start(@RequestBody MatchStartRequest matchStartRequest, @RequestHeader(value = "Authorization", required = false) String token)
     { return matchService.startMatch(matchStartRequest, loginService.getUserByToken(token).getId()); }
 
     @RequestMapping(value = "/finish", method = RequestMethod.POST)

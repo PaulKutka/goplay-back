@@ -24,7 +24,7 @@ public class NotificationController {
     private UserService userService;
 
     @RequestMapping(value = "/send", method = RequestMethod.POST)
-    Long sendNotifications(@RequestHeader(value = "Authorization") String token,
+    Long sendNotifications(@RequestHeader(value = "Authorization", required = false) String token,
                              @RequestBody MatchStartRequest matchStartRequest)
     {
         notificationService.createRequest(matchStartRequest);
