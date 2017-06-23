@@ -3,8 +3,11 @@ package com.example.goplay.controllers;
 import com.example.goplay.beans.entity.User;
 import com.example.goplay.beans.entity.request.RequestNotification;
 import com.example.goplay.beans.request.AnswerRequest;
+import com.example.goplay.beans.response.ColleagueResponse;
+import com.example.goplay.beans.response.UserResponse;
 import com.example.goplay.services.LoginService;
 import com.example.goplay.services.NotificationService;
+import com.example.goplay.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +19,8 @@ public class NotificationController {
     private NotificationService notificationService;
     @Autowired
     private LoginService loginService;
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     Iterable<RequestNotification> getNotifications(@RequestHeader("Authorization") String token)
@@ -38,8 +43,8 @@ public class NotificationController {
     }
 
     @RequestMapping(value = "/status/{id}", method = RequestMethod.GET)
-    Integer getStatus(@PathVariable Long requestId)
+    Iterable<ColleagueResponse> getStatus(@PathVariable Long requestId)
     {
-        return notificationService.getRequestById(requestId).getApproves();
+       return notificationService.parseUsersToColleagueResponse(notificationService.getRequestById(requestId).getAccepters());
     }
 }

@@ -33,7 +33,6 @@ public class MatchService {
     @Autowired
     private NotificationService notificationService;
 
-
     public MatchResponse startMatch(MatchStartRequest matchStartRequest){
 
         notificationService.createRequest(matchStartRequest);
