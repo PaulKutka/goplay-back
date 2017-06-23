@@ -35,13 +35,11 @@ public class MatchService {
 
     public MatchResponse startMatch(MatchStartRequest matchStartRequest){
 
-        notificationService.createRequest(matchStartRequest);
         TimeSlot timeSlot = timeSlotRepository.findOne(matchStartRequest.getTimeSlotId());
         timeSlot.setAvailable(false);
         timeSlotRepository.save(timeSlot);
 
         Match match = new Match();
-
 
         List<Team> teams = new ArrayList<>();
 

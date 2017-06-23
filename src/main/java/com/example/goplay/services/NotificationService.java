@@ -28,6 +28,8 @@ public class NotificationService {
     public Request createRequest(MatchStartRequest matchStartRequest)
     {
         Request request = new Request();
+        request.setId(matchStartRequest.getPlayer11Id());
+        request.setId(matchStartRequest.getPlayer11Id());
         List<RequestNotification> requestNotifications = new ArrayList<>();
         List<User> receivers = getReceivers(matchStartRequest);
         for (User user: receivers
