@@ -15,7 +15,7 @@ public class RequestNotification {
     private Request request;
 
     @OneToOne
-    User receiver;
+    private User receiver;
 
     public RequestNotification() {}
 

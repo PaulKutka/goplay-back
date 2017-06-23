@@ -47,7 +47,7 @@ public class NotificationService {
     }
 
     public Iterable<RequestNotification> getNotificationsByUser(User user) {
-        return requestNotificationRepository.findByUser(user);
+        return requestNotificationRepository.findByReceiver(user);
     }
 
     public void approveRequest(AnswerRequest answerRequest,User sender) {
