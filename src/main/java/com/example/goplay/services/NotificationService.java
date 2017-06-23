@@ -6,6 +6,7 @@ import com.example.goplay.beans.entity.request.RequestNotification;
 import com.example.goplay.beans.request.AnswerRequest;
 import com.example.goplay.beans.request.MatchStartRequest;
 import com.example.goplay.beans.response.ColleagueResponse;
+import com.example.goplay.beans.response.NotificationResponse;
 import com.example.goplay.repositories.RequestNotificationRepository;
 import com.example.goplay.repositories.RequestRepository;
 import com.example.goplay.repositories.UserRepository;
@@ -52,6 +53,16 @@ public class NotificationService {
 
     public Iterable<RequestNotification> getNotificationsByUser(User user) {
         return requestNotificationRepository.findByReceiver(user);
+    }
+
+    public Iterable<NotificationResponse> convert(User user)
+    {
+       List<NotificationResponse> list = new ArrayList<>();
+        for (RequestNotification requestNotification: getNotificationsByUser(user)
+             ) {
+            list.add(new NotificationResponse("Einam pazaist?"));
+        }
+        return list;
     }
 
     public void approveRequest(AnswerRequest answerRequest,User sender) {

@@ -5,6 +5,7 @@ import com.example.goplay.beans.entity.request.RequestNotification;
 import com.example.goplay.beans.request.AnswerRequest;
 import com.example.goplay.beans.request.MatchStartRequest;
 import com.example.goplay.beans.response.ColleagueResponse;
+import com.example.goplay.beans.response.NotificationResponse;
 import com.example.goplay.services.LoginService;
 import com.example.goplay.services.NotificationService;
 import com.example.goplay.services.UserService;
@@ -33,9 +34,9 @@ public class NotificationController {
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    Iterable<RequestNotification> getNotifications(@RequestHeader(value = "Authorization", required = false) String token)
+    Iterable<NotificationResponse> getNotifications(@RequestHeader(value = "Authorization", required = false) String token)
     {
-        return notificationService.getNotificationsByUser(loginService.getUserByToken(token));
+        return notificationService.convert(loginService.getUserByToken(token));
     }
 
     @RequestMapping(value = "/post", method = RequestMethod.POST)
